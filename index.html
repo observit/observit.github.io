@@ -1,34 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>observIT</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            flex-direction: column;
-            font-family: 'Consolas', monospace; /* Clean, fixed-size font */
-            font-weight: bold; /* Bold text */
-        }
-        .small-text {
-            font-size: calc(100vw / 20); /* Proportional to the big text */
-            /*text-transform: uppercase;*/
-        }
-        .big-text {
-            font-size: calc(100vw / 5);
-            white-space: nowrap;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Responsive Console Prompt</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+      color: lime;
+      font-family: monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    #console {
+      display: inline-block;
+      white-space: pre-wrap; /* allows wrapping */
+      word-break: break-word; /* breaks long words if needed */
+      font-size: clamp(1rem, 8vw, 6rem); /* responsive font size */
+      line-height: 1.2;
+    }
+
+    .cursor {
+      animation: blink 1s step-start infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+  </style>
 </head>
 <body>
-    <div class="small-text">this is</div>
-    <div class="big-text">observIT</div>
+  <div id="console">> <span id="text"></span><span class="cursor">|</span></div>
+
+  <script>
+    const message = "this is observIT";
+    const textElement = document.getElementById("text");
+    let index = 0;
+
+    function typeLetter() {
+      if (index < message.length) {
+        textElement.textContent += message[index];
+        index++;
+        setTimeout(typeLetter, 150);
+      }
+    }
+
+    typeLetter();
+  </script>
 </body>
 </html>
