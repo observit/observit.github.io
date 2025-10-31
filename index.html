@@ -19,9 +19,9 @@
 
     #console {
       display: inline-block;
-      white-space: pre-wrap; /* allows wrapping */
-      word-break: break-word; /* breaks long words if needed */
-      font-size: clamp(1rem, 8vw, 6rem); /* responsive font size */
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: clamp(1rem, 8vw, 6rem);
       line-height: 1.2;
     }
 
@@ -42,15 +42,21 @@
     const textElement = document.getElementById("text");
     let index = 0;
 
-    function typeLetter() {
+    function typeLoop() {
       if (index < message.length) {
         textElement.textContent += message[index];
         index++;
-        setTimeout(typeLetter, 150);
+        setTimeout(typeLoop, 150);
+      } else {
+        setTimeout(() => {
+          textElement.textContent = "";
+          index = 0;
+          setTimeout(typeLoop, 500);
+        }, 5000); // pause before clearing
       }
     }
 
-    typeLetter();
+    typeLoop();
   </script>
 </body>
 </html>
