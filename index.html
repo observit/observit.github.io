@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>observIT main page</title>
+  <title>observIT</title>
+  <meta name="description" content="observIT is an AI-powered framework that collects and interprets datacenter information, allowing users to query and interact with infrastructure using natural language.">
+  <meta name="keywords" content="observIT, AI, MLL, developer framework, minimal design, observability, datacenter">
+  <meta name="author" content="observIT Team">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://observit.github.io/">
+
   <style>
     html, body {
       margin: 0;
@@ -32,10 +38,32 @@
     @keyframes blink {
       50% { opacity: 0; }
     }
+
+    #contact-link {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 0.9rem;
+    }
+
+    #contact-link a {
+      color: lime;
+      text-decoration: none;
+    }
+
+    #contact-link a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <div id="console">> <span id="text"></span><span class="cursor">|</span></div>
+  <nav id="contact-link">
+    <a href="mailto:team-observit@proton.me" aria-label="Contact the observIT team">team talk</a>
+  </nav>
+
+  <main id="console" role="main" aria-label="observIT console interface">
+    > <span id="text"></span><span class="cursor">|</span>
+  </main>
 
   <script>
     const message = "this is observIT";
@@ -52,7 +80,7 @@
           textElement.textContent = "";
           index = 0;
           setTimeout(typeLoop, 500);
-        }, 5000); // pause before clearing
+        }, 5000); // 5-second pause before clearing
       }
     }
 
